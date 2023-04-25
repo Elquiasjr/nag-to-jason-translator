@@ -72,9 +72,14 @@ union YYSTYPE
 #line 7 "tradutorBison.y"
 
     struct agent *a;
+    struct crencas *c;
+    struct objetivos *o;
+    struct corpo *crp;
+    struct content *cnt;
+    struct planos *p;
     char *s;
 
-#line 78 "tradutorBison.tab.h"
+#line 83 "tradutorBison.tab.h"
 
 };
 typedef union YYSTYPE YYSTYPE;

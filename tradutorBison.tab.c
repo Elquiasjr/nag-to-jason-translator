@@ -516,9 +516,9 @@ static const yytype_int8 yytranslate[] =
 /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_int8 yyrline[] =
 {
-       0,    24,    24,    29,    32,    33,    36,    37,    40,    41,
-      44,    47,    48,    51,    54,    57,    58,    59,    62,    63,
-      64,    67,    70,    71
+       0,    34,    34,    40,    43,    44,    47,    48,    51,    52,
+      55,    58,    59,    62,    65,    68,    69,    70,    73,    74,
+      75,    78,    81,    82
 };
 #endif
 
@@ -1107,141 +1107,142 @@ yyreduce:
   switch (yyn)
     {
   case 2: /* agent: NAME CRENCAS lCrencas OBJETIVOS lObjetivos PLANOS lPlanos  */
-#line 24 "tradutorBison.y"
+#line 34 "tradutorBison.y"
                                                                  {
-    (yyval.a) = newAgent((yyvsp[-6].s), (yyvsp[-4].s), (yyvsp[-2].s), (yyvsp[0].s));
+    (yyval.a) = newAgent((yyvsp[-6].s), (yyvsp[-4].c), (yyvsp[-2].o), (yyvsp[0].p));
+    writeAgent((yyval.a));
 }
-#line 1115 "tradutorBison.tab.c"
+#line 1116 "tradutorBison.tab.c"
     break;
 
   case 3: /* lCrencas: '{' nCrencas '}'  */
-#line 29 "tradutorBison.y"
-                           {(yyval.s) = (yyvsp[-1].s);}
-#line 1121 "tradutorBison.tab.c"
+#line 40 "tradutorBison.y"
+                           {(yyval.c) = (yyvsp[-1].c);}
+#line 1122 "tradutorBison.tab.c"
     break;
 
   case 4: /* nCrencas: %empty  */
-#line 32 "tradutorBison.y"
-           { (yyval.s) = NULL;}
-#line 1127 "tradutorBison.tab.c"
+#line 43 "tradutorBison.y"
+           { (yyval.c) = NULL;}
+#line 1128 "tradutorBison.tab.c"
     break;
 
   case 5: /* nCrencas: NAME ';' nCrencas  */
-#line 33 "tradutorBison.y"
-                        {(yyval.s) = stringcat( (yyvsp[-2].s), (yyvsp[0].s));}
-#line 1133 "tradutorBison.tab.c"
+#line 44 "tradutorBison.y"
+                        {(yyval.c) = insertCrenca(newCrenca((yyvsp[-2].s)), (yyvsp[0].c));}
+#line 1134 "tradutorBison.tab.c"
     break;
 
   case 6: /* lObjetivos: %empty  */
-#line 36 "tradutorBison.y"
-            { (yyval.s) = NULL;}
-#line 1139 "tradutorBison.tab.c"
+#line 47 "tradutorBison.y"
+            { (yyval.o) = NULL;}
+#line 1140 "tradutorBison.tab.c"
     break;
 
   case 7: /* lObjetivos: '{' nObjetivo '}'  */
-#line 37 "tradutorBison.y"
-                        {(yyval.s) = (yyvsp[-1].s);}
-#line 1145 "tradutorBison.tab.c"
+#line 48 "tradutorBison.y"
+                        {(yyval.o) = (yyvsp[-1].o);}
+#line 1146 "tradutorBison.tab.c"
     break;
 
   case 8: /* nObjetivo: %empty  */
-#line 40 "tradutorBison.y"
-           { (yyval.s) = NULL;}
-#line 1151 "tradutorBison.tab.c"
+#line 51 "tradutorBison.y"
+           { (yyval.o) = NULL;}
+#line 1152 "tradutorBison.tab.c"
     break;
 
   case 9: /* nObjetivo: NAME ';' nObjetivo  */
-#line 41 "tradutorBison.y"
-                         {(yyval.s) = stringcat( (yyvsp[-2].s), (yyvsp[0].s));}
-#line 1157 "tradutorBison.tab.c"
+#line 52 "tradutorBison.y"
+                         {(yyval.o) = insertObjetivo(newObjetivo((yyvsp[-2].s)), (yyvsp[0].o));}
+#line 1158 "tradutorBison.tab.c"
     break;
 
   case 10: /* lPlanos: '{' nomePlano '}'  */
-#line 44 "tradutorBison.y"
-                           {(yyval.s) = (yyvsp[-1].s);}
-#line 1163 "tradutorBison.tab.c"
+#line 55 "tradutorBison.y"
+                           {(yyval.p) = (yyvsp[-1].p);}
+#line 1164 "tradutorBison.tab.c"
     break;
 
   case 11: /* nomePlano: %empty  */
-#line 47 "tradutorBison.y"
-           { (yyval.s) = NULL;}
-#line 1169 "tradutorBison.tab.c"
+#line 58 "tradutorBison.y"
+           { (yyval.p) = NULL;}
+#line 1170 "tradutorBison.tab.c"
     break;
 
   case 12: /* nomePlano: NAME tuplaPlano ';' nomePlano  */
-#line 48 "tradutorBison.y"
-                                    {(yyval.s) = threecat((yyvsp[-3].s), (yyvsp[-2].s), (yyvsp[0].s));}
-#line 1175 "tradutorBison.tab.c"
+#line 59 "tradutorBison.y"
+                                    {(yyval.p) = insertPlano(newPlano((yyvsp[-3].s), (yyvsp[-2].cnt)), (yyvsp[0].p));}
+#line 1176 "tradutorBison.tab.c"
     break;
 
   case 13: /* tuplaPlano: '(' eventoGatilho ';' contexto ';' corpo ')'  */
-#line 51 "tradutorBison.y"
-                                                         {(yyval.s) = threecat((yyvsp[-5].s), (yyvsp[-3].s), (yyvsp[-1].s));}
-#line 1181 "tradutorBison.tab.c"
+#line 62 "tradutorBison.y"
+                                                         {(yyval.cnt) = newContent((yyvsp[-5].s), (yyvsp[-3].s), (yyvsp[-1].crp));}
+#line 1182 "tradutorBison.tab.c"
     break;
 
   case 14: /* eventoGatilho: NAME  */
-#line 54 "tradutorBison.y"
+#line 65 "tradutorBison.y"
                     {(yyval.s) = (yyvsp[0].s);}
-#line 1187 "tradutorBison.tab.c"
+#line 1188 "tradutorBison.tab.c"
     break;
 
   case 15: /* contexto: %empty  */
-#line 57 "tradutorBison.y"
+#line 68 "tradutorBison.y"
           {(yyval.s) = NULL;}
-#line 1193 "tradutorBison.tab.c"
+#line 1194 "tradutorBison.tab.c"
     break;
 
   case 16: /* contexto: NAME  */
-#line 58 "tradutorBison.y"
+#line 69 "tradutorBison.y"
           {(yyval.s) = (yyvsp[0].s);}
-#line 1199 "tradutorBison.tab.c"
+#line 1200 "tradutorBison.tab.c"
     break;
 
   case 17: /* contexto: expLogica  */
-#line 59 "tradutorBison.y"
+#line 70 "tradutorBison.y"
                 {(yyval.s) = (yyvsp[0].s);}
-#line 1205 "tradutorBison.tab.c"
+#line 1206 "tradutorBison.tab.c"
     break;
 
   case 18: /* expLogica: NAME E NAME  */
-#line 62 "tradutorBison.y"
-                       { (yyval.s) = threecat((yyvsp[-2].s), (yyvsp[-1].s), (yyvsp[0].s));}
-#line 1211 "tradutorBison.tab.c"
+#line 73 "tradutorBison.y"
+                       { (yyval.s) = threecat((yyvsp[-2].s), " E ", (yyvsp[0].s));}
+#line 1212 "tradutorBison.tab.c"
     break;
 
   case 19: /* expLogica: NAME OU NAME  */
-#line 63 "tradutorBison.y"
-                   { (yyval.s) = threecat((yyvsp[-2].s), (yyvsp[-1].s), (yyvsp[0].s)); }
-#line 1217 "tradutorBison.tab.c"
+#line 74 "tradutorBison.y"
+                   { (yyval.s) = threecat((yyvsp[-2].s), " OU ", (yyvsp[0].s)); }
+#line 1218 "tradutorBison.tab.c"
     break;
 
   case 20: /* expLogica: NAO NAME  */
-#line 64 "tradutorBison.y"
-               { (yyval.s) = stringcat((yyvsp[-1].s), (yyvsp[0].s)); }
-#line 1223 "tradutorBison.tab.c"
+#line 75 "tradutorBison.y"
+               { (yyval.s) = stringcat("NAO ", (yyvsp[0].s)); }
+#line 1224 "tradutorBison.tab.c"
     break;
 
   case 21: /* corpo: '{' formulasCorpo '}'  */
-#line 67 "tradutorBison.y"
-                              {(yyval.s) = (yyvsp[-1].s);}
-#line 1229 "tradutorBison.tab.c"
+#line 78 "tradutorBison.y"
+                              {(yyval.crp) = (yyvsp[-1].crp);}
+#line 1230 "tradutorBison.tab.c"
     break;
 
   case 22: /* formulasCorpo: %empty  */
-#line 70 "tradutorBison.y"
-               { (yyval.s) = NULL ;}
-#line 1235 "tradutorBison.tab.c"
+#line 81 "tradutorBison.y"
+               { (yyval.crp) = NULL ;}
+#line 1236 "tradutorBison.tab.c"
     break;
 
   case 23: /* formulasCorpo: NAME ';' formulasCorpo  */
-#line 71 "tradutorBison.y"
-                             {(yyval.s) = stringcat( (yyvsp[-2].s), (yyvsp[0].s));}
-#line 1241 "tradutorBison.tab.c"
+#line 82 "tradutorBison.y"
+                             {(yyval.crp) = insertCorpo( newCorpo((yyvsp[-2].s)), (yyvsp[0].crp));}
+#line 1242 "tradutorBison.tab.c"
     break;
 
 
-#line 1245 "tradutorBison.tab.c"
+#line 1246 "tradutorBison.tab.c"
 
       default: break;
     }
@@ -1434,4 +1435,4 @@ yyreturnlab:
   return yyresult;
 }
 
-#line 74 "tradutorBison.y"
+#line 85 "tradutorBison.y"

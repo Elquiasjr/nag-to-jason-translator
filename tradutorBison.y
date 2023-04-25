@@ -6,6 +6,11 @@
 
 %union {
     struct agent *a;
+    struct crencas *c;
+    struct objetivos *o;
+    struct corpo *crp;
+    struct content *cnt;
+    struct planos *p;
     char *s;
 }
 
@@ -13,7 +18,12 @@
 %token <s> OU NAO E
 
 %type <a> agent
-%type <s> lCrencas nCrencas lObjetivos nObjetivo lPlanos nomePlano tuplaPlano eventoGatilho contexto expLogica corpo formulasCorpo
+%type <s> eventoGatilho contexto expLogica
+%type <c> lCrencas nCrencas
+%type <o> lObjetivos nObjetivo
+%type <p> lPlanos nomePlano
+%type <cnt> tuplaPlano
+%type <crp> corpo formulasCorpo
 
 
 %start agent
@@ -23,6 +33,7 @@
 
 agent: NAME CRENCAS lCrencas OBJETIVOS lObjetivos PLANOS lPlanos {
     $$ = newAgent($1, $3, $5, $7);
+    writeAgent($$);
 }
     ;
 
@@ -30,7 +41,7 @@ lCrencas: '{' nCrencas '}' {$$ = $2;}
     ;
 
 nCrencas:  { $$ = NULL;}
-    | NAME ';' nCrencas {$$ = stringcat( $1, $3);}
+    | NAME ';' nCrencas {$$ = insertCrenca(newCrenca($1), $3);}
     ;
 
 lObjetivos: { $$ = NULL;}
@@ -38,17 +49,17 @@ lObjetivos: { $$ = NULL;}
     ;
 
 nObjetivo: { $$ = NULL;}
-    | NAME ';' nObjetivo {$$ = stringcat( $1, $3);}
+    | NAME ';' nObjetivo {$$ = insertObjetivo(newObjetivo($1), $3);}
     ;
 
 lPlanos: '{' nomePlano '}' {$$ = $2;}
     ;
 
 nomePlano: { $$ = NULL;}
-    | NAME tuplaPlano ';' nomePlano {$$ = threecat($1, $2, $4);}
+    | NAME tuplaPlano ';' nomePlano {$$ = insertPlano(newPlano($1, $2), $4);}
     ;
 
-tuplaPlano: '(' eventoGatilho ';' contexto ';' corpo ')' {$$ = threecat($2, $4, $6);}
+tuplaPlano: '(' eventoGatilho ';' contexto ';' corpo ')' {$$ = newContent($2, $4, $6);}
     ;
 
 eventoGatilho: NAME {$$ = $1;}
@@ -59,16 +70,16 @@ contexto: {$$ = NULL;}
     | expLogica {$$ = $1;}
     ;
 
-expLogica: NAME E NAME { $$ = threecat($1, $2, $3);}
-    | NAME OU NAME { $$ = threecat($1, $2, $3); }
-    | NAO NAME { $$ = stringcat($1, $2); }
+expLogica: NAME E NAME { $$ = threecat($1, " E ", $3);}
+    | NAME OU NAME { $$ = threecat($1, " OU ", $3); }
+    | NAO NAME { $$ = stringcat("NAO ", $2); }
     ;
 
 corpo:  '{' formulasCorpo '}' {$$ = $2;}
     ;
 
 formulasCorpo: { $$ = NULL ;}
-    | NAME ';' formulasCorpo {$$ = stringcat( $1, $3);}
+    | NAME ';' formulasCorpo {$$ = insertCorpo( newCorpo($1), $3);}
     ;
 
 %%

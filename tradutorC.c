@@ -4,11 +4,127 @@
 #include <string.h>
 #include "tradutorHeader.h"
 
-void writeAgent(struct agent *agentlist);
 
-char *curfilename; 
+struct crencas *newCrenca(char *crenca){
+    struct crencas *newC = (struct crencas*) malloc(sizeof(struct crencas));
+    
+    if(newC == NULL){
+        printf("Erro: falha na alocação de memória. \n");
+        exit(1);
+    }
 
-struct agent* newAgent(char *nome, char *crencas, char *objetivos, char *planos){
+    newC->crenca = crenca;
+    newC->prox = NULL;
+
+    return newC;
+}
+
+struct crencas *insertCrenca(struct crencas *crencalist, struct crencas *crenca){
+    if(crenca == NULL){
+        return crencalist;
+    }
+    struct crencas *aux = crencalist;
+    while(aux->prox != NULL){
+        aux = aux->prox;
+    }
+    aux->prox = crenca;
+    return crencalist;
+}
+
+struct objetivos *newObjetivo(char *objetivo){
+    struct objetivos *newO = (struct objetivos*) malloc(sizeof(struct objetivos));
+    
+    if(newO == NULL){
+        printf("Erro: falha na alocação de memória. \n");
+        exit(1);
+    }
+
+    newO->objetivo = objetivo;
+    newO->prox = NULL;
+
+    return newO;
+}
+
+struct objetivos *insertObjetivo(struct objetivos *objetivolist, struct objetivos *objetivo){
+    if(objetivo == NULL){
+        return objetivolist;
+    }
+    struct objetivos *aux = objetivolist;
+    while(aux->prox != NULL){
+        aux = aux->prox;
+    }
+    aux->prox = objetivo;
+    return objetivolist;
+}
+
+struct planos *newPlano(char *name, struct content *content){
+
+    struct planos *newP = (struct planos*) malloc(sizeof(struct planos));
+    
+    if(newP == NULL){
+        printf("Erro: falha na alocação de memória. \n");
+        exit(1);
+    }
+    newP->name = name;
+    newP->conteudo = content;
+    newP->prox = NULL;
+
+    return newP;
+}
+
+struct content *newContent(char *eventoGatilho, char *contexto, struct corpo *corpo){
+    struct content *newC = (struct content*) malloc(sizeof(struct content));
+    
+    if(newC == NULL){
+        printf("Erro: falha na alocação de memória. \n");
+        exit(1);
+    }
+
+    newC->eventoGatilho = eventoGatilho;
+    newC->contexto = contexto;
+    newC->corpo = corpo;
+
+    return newC;
+}
+
+struct corpo *newCorpo(char *corpo){
+    struct corpo *newC = (struct corpo*) malloc(sizeof(struct corpo));
+    
+    if(newC == NULL){
+        printf("Erro: falha na alocação de memória. \n");
+        exit(1);
+    }
+
+    newC->corpo = corpo;
+    newC->prox = NULL;
+
+    return newC;
+}
+
+struct corpo *insertCorpo(struct corpo *corpolist, struct corpo *corpo){
+    if(corpo == NULL){
+        return corpolist;
+    }
+    struct corpo *aux = corpolist;
+    while(aux->prox != NULL){
+        aux = aux->prox;
+    }
+    aux->prox = corpo;
+    return corpolist;
+}
+struct planos *insertPlano(struct planos *planolist, struct planos *plano){
+    if(plano == NULL){
+        return planolist;
+    }
+    struct planos *aux = planolist;
+    while(aux->prox != NULL){
+        aux = aux->prox;
+    }
+    aux->prox = plano;
+    return planolist;
+}
+
+struct agent* newAgent(char *nome, struct crencas *crencas, struct objetivos *objetivos, struct planos *planos){
     struct agent *newA = (struct agent*) malloc(sizeof(struct agent));
     
     if(newA == NULL){
@@ -21,16 +137,8 @@ struct agent* newAgent(char *nome, char *crencas, char *objetivos, char *planos)
     newA->objetivos = objetivos;
     newA->planos = planos;
     newA->prox = NULL;
-    
-    writeAgent(newA);
 
     return newA;
-}
-
-char * newString(char *ytext){
-    char *s = (char*)malloc(strlen(ytext) + 1);
-    strcpy(s, ytext);
-    return s;
 }
 
 char * stringcat(char *a, char *b){
@@ -64,28 +172,6 @@ char * threecat(char *a, char *b, char *c){
     return s;
 }
 
-char * fourcat(char *a, char *b, char *c, char *d){
-    if(a == NULL){
-        return threecat(b, c, d);
-    }
-    if(b == NULL){
-        return threecat(a, c, d);
-    }
-    if(c == NULL){
-        return threecat(a, b, d);
-    }
-    if(d == NULL){
-        return threecat(a, b, c);
-    }
-
-    char *s = (char*)malloc(strlen(a) + strlen(b) + strlen(c) + strlen(d) + 1);
-    strcat(s, a);
-    strcat(s, b);
-    strcat(s, c);
-    strcat(s, d);
-    return s;
-}
-
 struct agent *insertAgent(struct agent *agentlist, struct agent *agent){
     if(agentlist == NULL){
         agentlist = agent;
@@ -99,18 +185,47 @@ struct agent *insertAgent(struct agent *agentlist, struct agent *agent){
 }
 
 void writeAgent(struct agent *agentlist){
-
-    char *fileName = stringcat(agentlist->nome, ".asl");
-    FILE *g = fopen(fileName, "w+");
-    fprintf(g, "%s\n\n%s\n\n%s\n\n%s", agentlist->nome, agentlist->crencas, agentlist->objetivos, agentlist->planos);
-    fclose(g);
     
-    agentlist = agentlist->prox;
-
-    while (agentlist != NULL){
-        writeAgent(agentlist);
-        agentlist = agentlist->prox;
+    char* filename = stringcat(agentlist->nome, ".asl");
+    FILE *fp = fopen(filename, "w");
+    if(fp == NULL){
+        printf("Erro: falha na abertura do arquivo. \n");
+        exit(1);
     }
+    fprintf(fp, "Agent %s {\n", agentlist->nome);
+    fprintf(fp, "\tBeliefs {\n");
+    struct crencas *aux = agentlist->crencas;
+    while(aux != NULL){
+        fprintf(fp, "\t\t%s\n", aux->crenca);
+        aux = aux->prox;
+    }
+    fprintf(fp, "\t}\n");
+    fprintf(fp, "\tGoals {\n");
+    struct objetivos *aux2 = agentlist->objetivos;
+    while(aux2 != NULL){
+        fprintf(fp, "\t\t%s\n", aux2->objetivo);
+        aux2 = aux2->prox;
+    }
+    fprintf(fp, "\t}\n");
+    fprintf(fp, "\tPlans {\n");
+    struct planos *aux3 = agentlist->planos;
+    while(aux3 != NULL){
+        fprintf(fp, "\t\tPlan %s {\n", aux3->name);
+        fprintf(fp, "\t\t\tTriggerEvent %s\n", aux3->conteudo->eventoGatilho);
+        fprintf(fp, "\t\t\tContext %s\n", aux3->conteudo->contexto);
+        fprintf(fp, "\t\t\tBody {\n");
+        struct corpo *aux4 = aux3->conteudo->corpo;
+        while(aux4 != NULL){
+            fprintf(fp, "\t\t\t\t%s\n", aux4->corpo);
+            aux4 = aux4->prox;
+        }
+        fprintf(fp, "\t\t\t}\n");
+        fprintf(fp, "\t\t}\n");
+        aux3 = aux3->prox;
+    }
+    fprintf(fp, "\t}\n");
+    fprintf(fp, "}\n");
+    fclose(fp);
 }
 
 void yyerror(char *s, ...){
