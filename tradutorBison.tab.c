@@ -1207,19 +1207,19 @@ yyreduce:
 
   case 18: /* expLogica: NAME E NAME  */
 #line 73 "tradutorBison.y"
-                       { (yyval.s) = threecat((yyvsp[-2].s), " E ", (yyvsp[0].s));}
+                       { (yyval.s) = threecat((yyvsp[-2].s), " & ", (yyvsp[0].s));}
 #line 1212 "tradutorBison.tab.c"
     break;
 
   case 19: /* expLogica: NAME OU NAME  */
 #line 74 "tradutorBison.y"
-                   { (yyval.s) = threecat((yyvsp[-2].s), " OU ", (yyvsp[0].s)); }
+                   { (yyval.s) = threecat((yyvsp[-2].s), " | ", (yyvsp[0].s)); }
 #line 1218 "tradutorBison.tab.c"
     break;
 
   case 20: /* expLogica: NAO NAME  */
 #line 75 "tradutorBison.y"
-               { (yyval.s) = stringcat("NAO ", (yyvsp[0].s)); }
+               { (yyval.s) = stringcat("not ", (yyvsp[0].s)); }
 #line 1224 "tradutorBison.tab.c"
     break;
 

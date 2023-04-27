@@ -192,39 +192,30 @@ void writeAgent(struct agent *agentlist){
         printf("Erro: falha na abertura do arquivo. \n");
         exit(1);
     }
-    fprintf(fp, "Agent %s {\n", agentlist->nome);
-    fprintf(fp, "\tBeliefs {\n");
     struct crencas *aux = agentlist->crencas;
     while(aux != NULL){
-        fprintf(fp, "\t\t%s\n", aux->crenca);
+        fprintf(fp, "%s.\n", aux->crenca);
         aux = aux->prox;
     }
-    fprintf(fp, "\t}\n");
-    fprintf(fp, "\tGoals {\n");
+    fprintf(fp, "\n");
     struct objetivos *aux2 = agentlist->objetivos;
     while(aux2 != NULL){
-        fprintf(fp, "\t\t%s\n", aux2->objetivo);
+        fprintf(fp, "!%s.\n", aux2->objetivo);
         aux2 = aux2->prox;
     }
-    fprintf(fp, "\t}\n");
-    fprintf(fp, "\tPlans {\n");
+    fprintf(fp, "\n");
     struct planos *aux3 = agentlist->planos;
     while(aux3 != NULL){
-        fprintf(fp, "\t\tPlan %s {\n", aux3->name);
-        fprintf(fp, "\t\t\tTriggerEvent %s\n", aux3->conteudo->eventoGatilho);
-        fprintf(fp, "\t\t\tContext %s\n", aux3->conteudo->contexto);
-        fprintf(fp, "\t\t\tBody {\n");
+        fprintf(fp, "+!%s: ", aux3->conteudo->eventoGatilho);
+        fprintf(fp, "%s <- ", aux3->conteudo->contexto);
         struct corpo *aux4 = aux3->conteudo->corpo;
         while(aux4 != NULL){
-            fprintf(fp, "\t\t\t\t%s\n", aux4->corpo);
+            fprintf(fp, "%s; ", aux4->corpo);
             aux4 = aux4->prox;
         }
-        fprintf(fp, "\t\t\t}\n");
-        fprintf(fp, "\t\t}\n");
         aux3 = aux3->prox;
+        fprintf(fp, "\n");
     }
-    fprintf(fp, "\t}\n");
-    fprintf(fp, "}\n");
     fclose(fp);
 }
 

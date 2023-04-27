@@ -70,9 +70,9 @@ contexto: {$$ = NULL;}
     | expLogica {$$ = $1;}
     ;
 
-expLogica: NAME E NAME { $$ = threecat($1, " E ", $3);}
-    | NAME OU NAME { $$ = threecat($1, " OU ", $3); }
-    | NAO NAME { $$ = stringcat("NAO ", $2); }
+expLogica: NAME E NAME { $$ = threecat($1, " & ", $3);}
+    | NAME OU NAME { $$ = threecat($1, " | ", $3); }
+    | NAO NAME { $$ = stringcat("not ", $2); }
     ;
 
 corpo:  '{' formulasCorpo '}' {$$ = $2;}
