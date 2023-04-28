@@ -1,4 +1,4 @@
-bob crencas: { estaChovendo ; naotenhoGuardaChuva ; }
+maria crencas: { estaChovendo ; naotenhoGuardaChuva ; }
 objetivos: { comprarGuardaChuva ; naoPegarChuva ; }
 planos: { plano1 ( comprarGuardaChuva ; estaChovendo E naotenhoGuardaChuva ;
 { sair; procurarLoja; comprarGuardaChuva; } ) ;
@@ -6,7 +6,7 @@ plano2 ( naoPegarChuva ; NAO estaChovendo ; { sair; jogarBola ; } ) ;
 plano3 ( naoPegarChuva ; estaChovendo E naotenhoGuardaChuva ;
 { ficarEmCasa ; estudar ; } ) ; }
 
-julio crencas: { estaChovendo ; naotenhoGuardaChuva ; }
+claudia crencas: { estaChovendo ; naotenhoGuardaChuva ; }
 objetivos: { comprarGuardaChuva ; naoPegarChuva ; }
 planos: { plano1 ( comprarGuardaChuva ; estaChovendo E naotenhoGuardaChuva ;
 { sair; procurarLoja; comprarGuardaChuva; } ) ;

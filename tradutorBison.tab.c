@@ -117,19 +117,20 @@ enum yysymbol_kind_t
   YYSYMBOL_13_ = 13,                       /* '('  */
   YYSYMBOL_14_ = 14,                       /* ')'  */
   YYSYMBOL_YYACCEPT = 15,                  /* $accept  */
-  YYSYMBOL_agent = 16,                     /* agent  */
-  YYSYMBOL_lCrencas = 17,                  /* lCrencas  */
-  YYSYMBOL_nCrencas = 18,                  /* nCrencas  */
-  YYSYMBOL_lObjetivos = 19,                /* lObjetivos  */
-  YYSYMBOL_nObjetivo = 20,                 /* nObjetivo  */
-  YYSYMBOL_lPlanos = 21,                   /* lPlanos  */
-  YYSYMBOL_nomePlano = 22,                 /* nomePlano  */
-  YYSYMBOL_tuplaPlano = 23,                /* tuplaPlano  */
-  YYSYMBOL_eventoGatilho = 24,             /* eventoGatilho  */
-  YYSYMBOL_contexto = 25,                  /* contexto  */
-  YYSYMBOL_expLogica = 26,                 /* expLogica  */
-  YYSYMBOL_corpo = 27,                     /* corpo  */
-  YYSYMBOL_formulasCorpo = 28              /* formulasCorpo  */
+  YYSYMBOL_agentlist = 16,                 /* agentlist  */
+  YYSYMBOL_agent = 17,                     /* agent  */
+  YYSYMBOL_lCrencas = 18,                  /* lCrencas  */
+  YYSYMBOL_nCrencas = 19,                  /* nCrencas  */
+  YYSYMBOL_lObjetivos = 20,                /* lObjetivos  */
+  YYSYMBOL_nObjetivo = 21,                 /* nObjetivo  */
+  YYSYMBOL_lPlanos = 22,                   /* lPlanos  */
+  YYSYMBOL_nomePlano = 23,                 /* nomePlano  */
+  YYSYMBOL_tuplaPlano = 24,                /* tuplaPlano  */
+  YYSYMBOL_eventoGatilho = 25,             /* eventoGatilho  */
+  YYSYMBOL_contexto = 26,                  /* contexto  */
+  YYSYMBOL_expLogica = 27,                 /* expLogica  */
+  YYSYMBOL_corpo = 28,                     /* corpo  */
+  YYSYMBOL_formulasCorpo = 29              /* formulasCorpo  */
 };
 typedef enum yysymbol_kind_t yysymbol_kind_t;
 
@@ -455,18 +456,18 @@ union yyalloc
 #endif /* !YYCOPY_NEEDED */
 
 /* YYFINAL -- State number of the termination state.  */
-#define YYFINAL  4
+#define YYFINAL  5
 /* YYLAST -- Last index in YYTABLE.  */
-#define YYLAST   45
+#define YYLAST   47
 
 /* YYNTOKENS -- Number of terminals.  */
 #define YYNTOKENS  15
 /* YYNNTS -- Number of nonterminals.  */
-#define YYNNTS  14
+#define YYNNTS  15
 /* YYNRULES -- Number of rules.  */
-#define YYNRULES  23
+#define YYNRULES  25
 /* YYNSTATES -- Number of states.  */
-#define YYNSTATES  51
+#define YYNSTATES  53
 
 /* YYMAXUTOK -- Last valid token kind.  */
 #define YYMAXUTOK   264
@@ -516,9 +517,9 @@ static const yytype_int8 yytranslate[] =
 /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_int8 yyrline[] =
 {
-       0,    34,    34,    40,    43,    44,    47,    48,    51,    52,
-      55,    58,    59,    62,    65,    68,    69,    70,    73,    74,
-      75,    78,    81,    82
+       0,    34,    34,    35,    39,    45,    48,    49,    52,    53,
+      56,    57,    60,    63,    64,    67,    70,    73,    74,    75,
+      78,    79,    80,    83,    86,    87
 };
 #endif
 
@@ -536,9 +537,9 @@ static const char *const yytname[] =
 {
   "\"end of file\"", "error", "\"invalid token\"", "NAME", "CRENCAS",
   "OBJETIVOS", "PLANOS", "OU", "NAO", "E", "'{'", "'}'", "';'", "'('",
-  "')'", "$accept", "agent", "lCrencas", "nCrencas", "lObjetivos",
-  "nObjetivo", "lPlanos", "nomePlano", "tuplaPlano", "eventoGatilho",
-  "contexto", "expLogica", "corpo", "formulasCorpo", YY_NULLPTR
+  "')'", "$accept", "agentlist", "agent", "lCrencas", "nCrencas",
+  "lObjetivos", "nObjetivo", "lPlanos", "nomePlano", "tuplaPlano",
+  "eventoGatilho", "contexto", "expLogica", "corpo", "formulasCorpo", YY_NULLPTR
 };
 
 static const char *
@@ -548,7 +549,7 @@ yysymbol_name (yysymbol_kind_t yysymbol)
 }
 #endif
 
-#define YYPACT_NINF (-18)
+#define YYPACT_NINF (-19)
 
 #define yypact_value_is_default(Yyn) \
   ((Yyn) == YYPACT_NINF)
@@ -562,12 +563,12 @@ yysymbol_name (yysymbol_kind_t yysymbol)
    STATE-NUM.  */
 static const yytype_int8 yypact[] =
 {
-      -1,     0,     6,    -2,   -18,     4,     5,     1,     3,     2,
-       4,   -18,     8,     9,   -18,     7,    10,    12,     8,   -18,
-      13,   -18,   -18,    -4,    14,    15,    11,   -18,   -18,    16,
-      13,    -3,   -18,    -6,    17,    18,   -18,    21,    23,   -18,
-      19,   -18,   -18,    24,    20,    25,    22,   -18,    24,   -18,
-     -18
+      -1,     0,     6,    -1,    -2,   -19,   -19,     4,     5,     1,
+       3,     2,     4,   -19,     8,     9,   -19,     7,    10,    12,
+       8,   -19,    13,   -19,   -19,    -4,    14,    15,    11,   -19,
+     -19,    16,    13,    -3,   -19,    -6,    17,    18,   -19,    21,
+      23,   -19,    19,   -19,   -19,    24,    20,    25,    22,   -19,
+      24,   -19,   -19
 };
 
 /* YYDEFACT[STATE-NUM] -- Default reduction number in state STATE-NUM.
@@ -575,26 +576,26 @@ static const yytype_int8 yypact[] =
    means the default is an error.  */
 static const yytype_int8 yydefact[] =
 {
-       0,     0,     0,     0,     1,     4,     0,     0,     0,     6,
-       4,     3,     8,     0,     5,     0,     0,     0,     8,     7,
-      11,     2,     9,     0,     0,     0,     0,    10,    14,     0,
-      11,    15,    12,    16,     0,     0,    17,     0,     0,    20,
-       0,    19,    18,    22,     0,     0,     0,    13,    22,    21,
-      23
+       2,     0,     0,     2,     0,     1,     3,     6,     0,     0,
+       0,     8,     6,     5,    10,     0,     7,     0,     0,     0,
+      10,     9,    13,     4,    11,     0,     0,     0,     0,    12,
+      16,     0,    13,    17,    14,    18,     0,     0,    19,     0,
+       0,    22,     0,    21,    20,    24,     0,     0,     0,    15,
+      24,    23,    25
 };
 
 /* YYPGOTO[NTERM-NUM].  */
 static const yytype_int8 yypgoto[] =
 {
-     -18,   -18,   -18,    26,   -18,    27,   -18,   -13,   -18,   -18,
-     -18,   -18,   -18,   -17
+     -19,    28,   -19,   -19,    26,   -19,    27,   -19,   -15,   -19,
+     -19,   -19,   -19,   -19,   -18
 };
 
 /* YYDEFGOTO[NTERM-NUM].  */
 static const yytype_int8 yydefgoto[] =
 {
-       0,     2,     6,     8,    13,    16,    21,    24,    26,    29,
-      35,    36,    44,    46
+       0,     2,     3,     8,    10,    15,    18,    23,    26,    28,
+      31,    37,    38,    46,    48
 };
 
 /* YYTABLE[YYPACT[STATE-NUM]] -- What to do in state STATE-NUM.  If
@@ -602,48 +603,48 @@ static const yytype_int8 yydefgoto[] =
    number is the opposite.  If YYTABLE_NINF, syntax error.  */
 static const yytype_int8 yytable[] =
 {
-      33,    37,     1,    38,     3,    34,     4,     7,     5,    25,
-       9,    15,    12,    10,    11,    17,    23,    32,    28,    18,
-      39,    19,    20,    30,    41,    27,    42,    45,    31,    43,
-      40,    50,     0,    49,    47,     0,    14,    48,     0,     0,
-       0,     0,     0,     0,     0,    22
+      35,    39,     1,    40,     4,    36,     5,     9,     7,    27,
+      11,    17,    14,    12,    13,    19,    25,    34,    30,    20,
+      41,    21,    22,    32,    43,    29,    44,    47,    33,    45,
+      42,     6,    52,    51,    49,     0,     0,    50,    16,     0,
+       0,     0,     0,     0,     0,     0,     0,    24
 };
 
 static const yytype_int8 yycheck[] =
 {
        3,     7,     3,     9,     4,     8,     0,     3,    10,    13,
-       5,     3,    10,    12,    11,     6,     3,    30,     3,    12,
+       5,     3,    10,    12,    11,     6,     3,    32,     3,    12,
        3,    11,    10,    12,     3,    11,     3,     3,    12,    10,
-      12,    48,    -1,    11,    14,    -1,    10,    12,    -1,    -1,
-      -1,    -1,    -1,    -1,    -1,    18
+      12,     3,    50,    11,    14,    -1,    -1,    12,    12,    -1,
+      -1,    -1,    -1,    -1,    -1,    -1,    -1,    20
 };
 
 /* YYSTOS[STATE-NUM] -- The symbol kind of the accessing symbol of
    state STATE-NUM.  */
 static const yytype_int8 yystos[] =
 {
-       0,     3,    16,     4,     0,    10,    17,     3,    18,     5,
-      12,    11,    10,    19,    18,     3,    20,     6,    12,    11,
-      10,    21,    20,     3,    22,    13,    23,    11,     3,    24,
-      12,    12,    22,     3,     8,    25,    26,     7,     9,     3,
-      12,     3,     3,    10,    27,     3,    28,    14,    12,    11,
-      28
+       0,     3,    16,    17,     4,     0,    16,    10,    18,     3,
+      19,     5,    12,    11,    10,    20,    19,     3,    21,     6,
+      12,    11,    10,    22,    21,     3,    23,    13,    24,    11,
+       3,    25,    12,    12,    23,     3,     8,    26,    27,     7,
+       9,     3,    12,     3,     3,    10,    28,     3,    29,    14,
+      12,    11,    29
 };
 
 /* YYR1[RULE-NUM] -- Symbol kind of the left-hand side of rule RULE-NUM.  */
 static const yytype_int8 yyr1[] =
 {
-       0,    15,    16,    17,    18,    18,    19,    19,    20,    20,
-      21,    22,    22,    23,    24,    25,    25,    25,    26,    26,
-      26,    27,    28,    28
+       0,    15,    16,    16,    17,    18,    19,    19,    20,    20,
+      21,    21,    22,    23,    23,    24,    25,    26,    26,    26,
+      27,    27,    27,    28,    29,    29
 };
 
 /* YYR2[RULE-NUM] -- Number of symbols on the right-hand side of rule RULE-NUM.  */
 static const yytype_int8 yyr2[] =
 {
-       0,     2,     7,     3,     0,     3,     0,     3,     0,     3,
-       3,     0,     4,     7,     1,     0,     1,     1,     3,     3,
-       2,     3,     0,     3
+       0,     2,     0,     2,     7,     3,     0,     3,     0,     3,
+       0,     3,     3,     0,     4,     7,     1,     0,     1,     1,
+       3,     3,     2,     3,     0,     3
 };
 
 
@@ -1106,143 +1107,156 @@ yyreduce:
   YY_REDUCE_PRINT (yyn);
   switch (yyn)
     {
-  case 2: /* agent: NAME CRENCAS lCrencas OBJETIVOS lObjetivos PLANOS lPlanos  */
+  case 2: /* agentlist: %empty  */
 #line 34 "tradutorBison.y"
+                     { (yyval.a) = NULL;}
+#line 1114 "tradutorBison.tab.c"
+    break;
+
+  case 3: /* agentlist: agent agentlist  */
+#line 35 "tradutorBison.y"
+                      { (yyval.a) = insertAgent((yyvsp[-1].a), (yyvsp[0].a));
+    }
+#line 1121 "tradutorBison.tab.c"
+    break;
+
+  case 4: /* agent: NAME CRENCAS lCrencas OBJETIVOS lObjetivos PLANOS lPlanos  */
+#line 39 "tradutorBison.y"
                                                                  {
     (yyval.a) = newAgent((yyvsp[-6].s), (yyvsp[-4].c), (yyvsp[-2].o), (yyvsp[0].p));
     writeAgent((yyval.a));
 }
-#line 1116 "tradutorBison.tab.c"
+#line 1130 "tradutorBison.tab.c"
     break;
 
-  case 3: /* lCrencas: '{' nCrencas '}'  */
-#line 40 "tradutorBison.y"
+  case 5: /* lCrencas: '{' nCrencas '}'  */
+#line 45 "tradutorBison.y"
                            {(yyval.c) = (yyvsp[-1].c);}
-#line 1122 "tradutorBison.tab.c"
+#line 1136 "tradutorBison.tab.c"
     break;
 
-  case 4: /* nCrencas: %empty  */
-#line 43 "tradutorBison.y"
-           { (yyval.c) = NULL;}
-#line 1128 "tradutorBison.tab.c"
-    break;
-
-  case 5: /* nCrencas: NAME ';' nCrencas  */
-#line 44 "tradutorBison.y"
-                        {(yyval.c) = insertCrenca(newCrenca((yyvsp[-2].s)), (yyvsp[0].c));}
-#line 1134 "tradutorBison.tab.c"
-    break;
-
-  case 6: /* lObjetivos: %empty  */
-#line 47 "tradutorBison.y"
-            { (yyval.o) = NULL;}
-#line 1140 "tradutorBison.tab.c"
-    break;
-
-  case 7: /* lObjetivos: '{' nObjetivo '}'  */
+  case 6: /* nCrencas: %empty  */
 #line 48 "tradutorBison.y"
-                        {(yyval.o) = (yyvsp[-1].o);}
-#line 1146 "tradutorBison.tab.c"
+           { (yyval.c) = NULL;}
+#line 1142 "tradutorBison.tab.c"
     break;
 
-  case 8: /* nObjetivo: %empty  */
-#line 51 "tradutorBison.y"
-           { (yyval.o) = NULL;}
-#line 1152 "tradutorBison.tab.c"
+  case 7: /* nCrencas: NAME ';' nCrencas  */
+#line 49 "tradutorBison.y"
+                        {(yyval.c) = insertCrenca(newCrenca((yyvsp[-2].s)), (yyvsp[0].c));}
+#line 1148 "tradutorBison.tab.c"
     break;
 
-  case 9: /* nObjetivo: NAME ';' nObjetivo  */
+  case 8: /* lObjetivos: %empty  */
 #line 52 "tradutorBison.y"
+            { (yyval.o) = NULL;}
+#line 1154 "tradutorBison.tab.c"
+    break;
+
+  case 9: /* lObjetivos: '{' nObjetivo '}'  */
+#line 53 "tradutorBison.y"
+                        {(yyval.o) = (yyvsp[-1].o);}
+#line 1160 "tradutorBison.tab.c"
+    break;
+
+  case 10: /* nObjetivo: %empty  */
+#line 56 "tradutorBison.y"
+           { (yyval.o) = NULL;}
+#line 1166 "tradutorBison.tab.c"
+    break;
+
+  case 11: /* nObjetivo: NAME ';' nObjetivo  */
+#line 57 "tradutorBison.y"
                          {(yyval.o) = insertObjetivo(newObjetivo((yyvsp[-2].s)), (yyvsp[0].o));}
-#line 1158 "tradutorBison.tab.c"
+#line 1172 "tradutorBison.tab.c"
     break;
 
-  case 10: /* lPlanos: '{' nomePlano '}'  */
-#line 55 "tradutorBison.y"
+  case 12: /* lPlanos: '{' nomePlano '}'  */
+#line 60 "tradutorBison.y"
                            {(yyval.p) = (yyvsp[-1].p);}
-#line 1164 "tradutorBison.tab.c"
+#line 1178 "tradutorBison.tab.c"
     break;
 
-  case 11: /* nomePlano: %empty  */
-#line 58 "tradutorBison.y"
+  case 13: /* nomePlano: %empty  */
+#line 63 "tradutorBison.y"
            { (yyval.p) = NULL;}
-#line 1170 "tradutorBison.tab.c"
+#line 1184 "tradutorBison.tab.c"
     break;
 
-  case 12: /* nomePlano: NAME tuplaPlano ';' nomePlano  */
-#line 59 "tradutorBison.y"
+  case 14: /* nomePlano: NAME tuplaPlano ';' nomePlano  */
+#line 64 "tradutorBison.y"
                                     {(yyval.p) = insertPlano(newPlano((yyvsp[-3].s), (yyvsp[-2].cnt)), (yyvsp[0].p));}
-#line 1176 "tradutorBison.tab.c"
+#line 1190 "tradutorBison.tab.c"
     break;
 
-  case 13: /* tuplaPlano: '(' eventoGatilho ';' contexto ';' corpo ')'  */
-#line 62 "tradutorBison.y"
+  case 15: /* tuplaPlano: '(' eventoGatilho ';' contexto ';' corpo ')'  */
+#line 67 "tradutorBison.y"
                                                          {(yyval.cnt) = newContent((yyvsp[-5].s), (yyvsp[-3].s), (yyvsp[-1].crp));}
-#line 1182 "tradutorBison.tab.c"
+#line 1196 "tradutorBison.tab.c"
     break;
 
-  case 14: /* eventoGatilho: NAME  */
-#line 65 "tradutorBison.y"
-                    {(yyval.s) = (yyvsp[0].s);}
-#line 1188 "tradutorBison.tab.c"
-    break;
-
-  case 15: /* contexto: %empty  */
-#line 68 "tradutorBison.y"
-          {(yyval.s) = NULL;}
-#line 1194 "tradutorBison.tab.c"
-    break;
-
-  case 16: /* contexto: NAME  */
-#line 69 "tradutorBison.y"
-          {(yyval.s) = (yyvsp[0].s);}
-#line 1200 "tradutorBison.tab.c"
-    break;
-
-  case 17: /* contexto: expLogica  */
+  case 16: /* eventoGatilho: NAME  */
 #line 70 "tradutorBison.y"
-                {(yyval.s) = (yyvsp[0].s);}
-#line 1206 "tradutorBison.tab.c"
+                    {(yyval.s) = (yyvsp[0].s);}
+#line 1202 "tradutorBison.tab.c"
     break;
 
-  case 18: /* expLogica: NAME E NAME  */
+  case 17: /* contexto: %empty  */
 #line 73 "tradutorBison.y"
-                       { (yyval.s) = threecat((yyvsp[-2].s), " & ", (yyvsp[0].s));}
-#line 1212 "tradutorBison.tab.c"
+          {(yyval.s) = NULL;}
+#line 1208 "tradutorBison.tab.c"
     break;
 
-  case 19: /* expLogica: NAME OU NAME  */
+  case 18: /* contexto: NAME  */
 #line 74 "tradutorBison.y"
-                   { (yyval.s) = threecat((yyvsp[-2].s), " | ", (yyvsp[0].s)); }
-#line 1218 "tradutorBison.tab.c"
+          {(yyval.s) = (yyvsp[0].s);}
+#line 1214 "tradutorBison.tab.c"
     break;
 
-  case 20: /* expLogica: NAO NAME  */
+  case 19: /* contexto: expLogica  */
 #line 75 "tradutorBison.y"
-               { (yyval.s) = stringcat("not ", (yyvsp[0].s)); }
-#line 1224 "tradutorBison.tab.c"
+                {(yyval.s) = (yyvsp[0].s);}
+#line 1220 "tradutorBison.tab.c"
     break;
 
-  case 21: /* corpo: '{' formulasCorpo '}'  */
+  case 20: /* expLogica: NAME E NAME  */
 #line 78 "tradutorBison.y"
+                       { (yyval.s) = threecat((yyvsp[-2].s), " & ", (yyvsp[0].s));}
+#line 1226 "tradutorBison.tab.c"
+    break;
+
+  case 21: /* expLogica: NAME OU NAME  */
+#line 79 "tradutorBison.y"
+                   { (yyval.s) = threecat((yyvsp[-2].s), " | ", (yyvsp[0].s)); }
+#line 1232 "tradutorBison.tab.c"
+    break;
+
+  case 22: /* expLogica: NAO NAME  */
+#line 80 "tradutorBison.y"
+               { (yyval.s) = stringcat("not ", (yyvsp[0].s)); }
+#line 1238 "tradutorBison.tab.c"
+    break;
+
+  case 23: /* corpo: '{' formulasCorpo '}'  */
+#line 83 "tradutorBison.y"
                               {(yyval.crp) = (yyvsp[-1].crp);}
-#line 1230 "tradutorBison.tab.c"
+#line 1244 "tradutorBison.tab.c"
     break;
 
-  case 22: /* formulasCorpo: %empty  */
-#line 81 "tradutorBison.y"
+  case 24: /* formulasCorpo: %empty  */
+#line 86 "tradutorBison.y"
                { (yyval.crp) = NULL ;}
-#line 1236 "tradutorBison.tab.c"
+#line 1250 "tradutorBison.tab.c"
     break;
 
-  case 23: /* formulasCorpo: NAME ';' formulasCorpo  */
-#line 82 "tradutorBison.y"
+  case 25: /* formulasCorpo: NAME ';' formulasCorpo  */
+#line 87 "tradutorBison.y"
                              {(yyval.crp) = insertCorpo( newCorpo((yyvsp[-2].s)), (yyvsp[0].crp));}
-#line 1242 "tradutorBison.tab.c"
+#line 1256 "tradutorBison.tab.c"
     break;
 
 
-#line 1246 "tradutorBison.tab.c"
+#line 1260 "tradutorBison.tab.c"
 
       default: break;
     }
@@ -1435,4 +1449,4 @@ yyreturnlab:
   return yyresult;
 }
 
-#line 85 "tradutorBison.y"
+#line 90 "tradutorBison.y"

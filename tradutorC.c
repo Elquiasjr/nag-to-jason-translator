@@ -4,7 +4,6 @@
 #include <string.h>
 #include "tradutorHeader.h"
 
-
 struct crencas *newCrenca(char *crenca){
     struct crencas *newC = (struct crencas*) malloc(sizeof(struct crencas));
     
@@ -124,6 +123,18 @@ struct planos *insertPlano(struct planos *planolist, struct planos *plano){
     return planolist;
 }
 
+struct agent* insertAgent(struct agent *agent, struct agent *agentlist){
+    if(agentlist == NULL){
+        return agent;
+    }
+    struct agent *aux = agentlist;
+    while(aux->prox != NULL){
+        aux = aux->prox;
+    }
+    aux->prox = agent;
+    return agentlist;
+}
+
 struct agent* newAgent(char *nome, struct crencas *crencas, struct objetivos *objetivos, struct planos *planos){
     struct agent *newA = (struct agent*) malloc(sizeof(struct agent));
     
@@ -172,21 +183,8 @@ char * threecat(char *a, char *b, char *c){
     return s;
 }
 
-struct agent *insertAgent(struct agent *agentlist, struct agent *agent){
-    if(agentlist == NULL){
-        agentlist = agent;
-    }
-    else{
-        agent->prox = agentlist;
-        agentlist->prox = NULL;
-        agentlist = agent;
-    }
-    return (struct agent*)agentlist;
-}
-
 void writeAgent(struct agent *agentlist){
-    
-    char* filename = stringcat(agentlist->nome, ".asl");
+    char *filename = stringcat(agentlist->nome, ".asl");
     FILE *fp = fopen(filename, "w");
     if(fp == NULL){
         printf("Erro: falha na abertura do arquivo. \n");
@@ -210,13 +208,19 @@ void writeAgent(struct agent *agentlist){
         fprintf(fp, "%s <- ", aux3->conteudo->contexto);
         struct corpo *aux4 = aux3->conteudo->corpo;
         while(aux4 != NULL){
-            fprintf(fp, "%s; ", aux4->corpo);
+            fprintf(fp, "%s", aux4->corpo);
+            if(aux4->prox ==  NULL){
+                fprintf(fp, ".");
+            }
+            else{
+                fprintf(fp, "; ");
+            }
             aux4 = aux4->prox;
         }
         aux3 = aux3->prox;
         fprintf(fp, "\n");
     }
-    fclose(fp);
+    fclose(fp);         
 }
 
 void yyerror(char *s, ...){
@@ -247,5 +251,7 @@ int main(int argc, char *argv[]){
         yyparse();
         fclose(f);
     }
+    
     return 0;
 }
+

@@ -17,7 +17,7 @@
 %token <s> NAME CRENCAS OBJETIVOS PLANOS
 %token <s> OU NAO E
 
-%type <a> agent
+%type <a> agent agentlist
 %type <s> eventoGatilho contexto expLogica
 %type <c> lCrencas nCrencas
 %type <o> lObjetivos nObjetivo
@@ -26,10 +26,15 @@
 %type <crp> corpo formulasCorpo
 
 
-%start agent
+%start agentlist
 
 
 %%
+
+agentlist: /*vazio*/ { $$ = NULL;}
+    | agent agentlist { $$ = insertAgent($1, $2);
+    }
+    ;
 
 agent: NAME CRENCAS lCrencas OBJETIVOS lObjetivos PLANOS lPlanos {
     $$ = newAgent($1, $3, $5, $7);

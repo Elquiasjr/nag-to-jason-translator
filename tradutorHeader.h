@@ -58,7 +58,7 @@ struct planos *insertPlano(struct planos *planolist, struct planos *plano);
 
 struct agent* newAgent(char *nome, struct crencas *crencas, struct objetivos *objetivos, struct planos *planos);
 
-struct agent *insertAgent(struct agent *agentlist, struct agent *agent);
+struct agent* insertAgent(struct agent *agentlist, struct agent *agent);
 
 void writeAgent(struct agent *agentlist);
 
