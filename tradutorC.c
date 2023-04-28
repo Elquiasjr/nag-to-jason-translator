@@ -184,7 +184,7 @@ char * threecat(char *a, char *b, char *c){
 }
 
 void writeAgent(struct agent *agentlist){
-    char *filename = stringcat(agentlist->nome, ".asl");
+    char *filename = threecat("tradutorAgents/src/agt/", agentlist->nome, ".asl");
     FILE *fp = fopen(filename, "w");
     if(fp == NULL){
         printf("Erro: falha na abertura do arquivo. \n");
@@ -208,12 +208,12 @@ void writeAgent(struct agent *agentlist){
         fprintf(fp, "%s <- ", aux3->conteudo->contexto);
         struct corpo *aux4 = aux3->conteudo->corpo;
         while(aux4 != NULL){
-            fprintf(fp, "%s", aux4->corpo);
+            fprintf(fp, ".printf(\"%s\")", aux4->corpo);
             if(aux4->prox ==  NULL){
-                fprintf(fp, ".");
+                fprintf(fp, ".\n");
             }
             else{
-                fprintf(fp, "; ");
+                fprintf(fp, ";\n");
             }
             aux4 = aux4->prox;
         }

@@ -6,10 +6,10 @@ plano2 ( naoPegarChuva ; NAO estaChovendo ; { sair; jogarBola ; } ) ;
 plano3 ( naoPegarChuva ; estaChovendo E naotenhoGuardaChuva ;
 { ficarEmCasa ; estudar ; } ) ; }
 
-julio crencas: { estaChovendo ; naotenhoGuardaChuva ; }
-objetivos: { comprarGuardaChuva ; naoPegarChuva ; }
-planos: { plano1 ( comprarGuardaChuva ; estaChovendo E naotenhoGuardaChuva ;
-{ sair; procurarLoja; comprarGuardaChuva; } ) ;
-plano2 ( naoPegarChuva ; NAO estaChovendo ; { sair; jogarBola ; } ) ;
-plano3 ( naoPegarChuva ; estaChovendo E naotenhoGuardaChuva ;
-{ ficarEmCasa ; estudar ; } ) ; }
+joao crencas: { tenhoFome ; tenhoSede ; tenhoSono ; }
+objetivos: { fazerComida ; servirBebida ; irDormir ; }
+planos: { plano1 ( fazerComida ;  tenhoFome ;
+{ vouCozinhar; fazendoComida ; meAlimentei ; } ) ;
+plano2 ( servirBebida ; tenhoSede ; { vouServirBebida ; meRefresquei ; } ) ;
+plano3 ( irDormir ; tenhoSono ;
+{ deitarCama ; contarOvelhas ; } ) ; }
