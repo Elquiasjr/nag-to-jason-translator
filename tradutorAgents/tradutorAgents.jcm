@@ -18,5 +18,6 @@ mas tradutorAgents {
 
 	agent joao {}    
 
+    agent steve {}
 }
 
