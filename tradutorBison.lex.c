@@ -805,32 +805,32 @@ YY_RULE_SETUP
 case 6:
 YY_RULE_SETUP
 #line 17 "tradutorLex.l"
-{printf("NAO\n"); return NAO; }
+{ return NAO; }
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
 #line 18 "tradutorLex.l"
-{printf("OU\n"); return OU; }
+{ return OU; }
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
 #line 19 "tradutorLex.l"
-{printf("E\n"); return E;}
+{ return E;}
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
 #line 20 "tradutorLex.l"
-{printf("Crencas\n"); return CRENCAS; }
+{ return CRENCAS; }
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
 #line 21 "tradutorLex.l"
-{printf("Objetivos\n"); return OBJETIVOS; }
+{ return OBJETIVOS; }
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
 #line 22 "tradutorLex.l"
-{ printf("Planos\n"); return PLANOS; }
+{ return PLANOS; }
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
@@ -840,7 +840,7 @@ YY_RULE_SETUP
 case 13:
 YY_RULE_SETUP
 #line 24 "tradutorLex.l"
-{ yylval.s = strdup(yytext); printf("Nome: %s\n", yytext); return NAME; }
+{ yylval.s = strdup(yytext); return NAME; }
 	YY_BREAK
 case 14:
 /* rule 14 can match eol */

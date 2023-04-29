@@ -14,14 +14,14 @@
 "(" |
 ")" { return yytext[0];}
 
-"NAO" {printf("NAO\n"); return NAO; }
-"OU" {printf("OU\n"); return OU; }
-"E" {printf("E\n"); return E;}
-"crencas:" {printf("Crencas\n"); return CRENCAS; }
-"objetivos:" {printf("Objetivos\n"); return OBJETIVOS; }
-"planos:" { printf("Planos\n"); return PLANOS; }
+"NAO" { return NAO; }
+"OU" { return OU; }
+"E" { return E;}
+"crencas:" { return CRENCAS; }
+"objetivos:" { return OBJETIVOS; }
+"planos:" { return PLANOS; }
 [ \t]
-[a-zA-Z][a-zA-Z0-9]* { yylval.s = strdup(yytext); printf("Nome: %s\n", yytext); return NAME; }
+[a-zA-Z][a-zA-Z0-9]* { yylval.s = strdup(yytext); return NAME; }
 [\n]
 [\\\n]
 

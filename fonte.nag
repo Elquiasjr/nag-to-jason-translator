@@ -13,3 +13,8 @@ planos: { plano1 ( fazerComida ;  tenhoFome ;
 plano2 ( servirBebida ; tenhoSede ; { vouServirBebida ; meRefresquei ; } ) ;
 plano3 ( irDormir ; tenhoSono ;
 { deitarCama ; contarOvelhas ; } ) ; }
+
+steve crencas: { ehNoite ; tenhoquePescar ; tocomSono ; }
+objetivos: { irnoLago ; irDormir ; }
+planos: { plano1 ( irnoLago ;  NAO ehNoite ; { vouirPescar; } ) ;
+plano2 ( irDormir ; ehNoite OU tocomSono ; { vouDormir ; } ) ; }
