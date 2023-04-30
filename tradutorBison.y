@@ -49,8 +49,7 @@ nCrencas:  { $$ = NULL;}
     | NAME ';' nCrencas {$$ = insertCrenca(newCrenca($1), $3);}
     ;
 
-lObjetivos: { $$ = NULL;}
-    | '{' nObjetivo '}' {$$ = $2;}
+lObjetivos: '{' nObjetivo '}' {$$ = $2;}
     ;
 
 nObjetivo: { $$ = NULL;}

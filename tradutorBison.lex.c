@@ -496,13 +496,11 @@ int yy_flex_debug = 0;
 #define YY_RESTORE_YY_MORE_OFFSET
 char *yytext;
 #line 1 "tradutorLex.l"
-/* Exemplo de Multiplos Arquivo no Flex (contagem de palavras) */
-/* desabilita o analisador léxico */
-#line 5 "tradutorLex.l"
+#line 3 "tradutorLex.l"
 #include "tradutorHeader.h"
 #include "tradutorBison.tab.h"
-#line 504 "tradutorBison.lex.c"
-#line 505 "tradutorBison.lex.c"
+#line 502 "tradutorBison.lex.c"
+#line 503 "tradutorBison.lex.c"
 
 #define INITIAL 0
 
@@ -719,10 +717,10 @@ YY_DECL
 		}
 
 	{
-#line 9 "tradutorLex.l"
+#line 7 "tradutorLex.l"
 
 
-#line 725 "tradutorBison.lex.c"
+#line 723 "tradutorBison.lex.c"
 
 	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
@@ -790,81 +788,81 @@ do_action:	/* This label is used only to access EOF actions. */
 			goto yy_find_action;
 
 case 1:
-#line 12 "tradutorLex.l"
+#line 10 "tradutorLex.l"
 case 2:
-#line 13 "tradutorLex.l"
+#line 11 "tradutorLex.l"
 case 3:
-#line 14 "tradutorLex.l"
+#line 12 "tradutorLex.l"
 case 4:
-#line 15 "tradutorLex.l"
+#line 13 "tradutorLex.l"
 case 5:
 YY_RULE_SETUP
-#line 15 "tradutorLex.l"
+#line 13 "tradutorLex.l"
 { return yytext[0];}
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 17 "tradutorLex.l"
+#line 15 "tradutorLex.l"
 { return NAO; }
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 18 "tradutorLex.l"
+#line 16 "tradutorLex.l"
 { return OU; }
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 19 "tradutorLex.l"
+#line 17 "tradutorLex.l"
 { return E;}
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 20 "tradutorLex.l"
+#line 18 "tradutorLex.l"
 { return CRENCAS; }
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 21 "tradutorLex.l"
+#line 19 "tradutorLex.l"
 { return OBJETIVOS; }
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 22 "tradutorLex.l"
+#line 20 "tradutorLex.l"
 { return PLANOS; }
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 23 "tradutorLex.l"
+#line 21 "tradutorLex.l"
 
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 24 "tradutorLex.l"
+#line 22 "tradutorLex.l"
 { yylval.s = strdup(yytext); return NAME; }
 	YY_BREAK
 case 14:
 /* rule 14 can match eol */
 YY_RULE_SETUP
-#line 25 "tradutorLex.l"
+#line 23 "tradutorLex.l"
 
 	YY_BREAK
 case 15:
 /* rule 15 can match eol */
 YY_RULE_SETUP
-#line 26 "tradutorLex.l"
+#line 24 "tradutorLex.l"
 
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 29 "tradutorLex.l"
+#line 27 "tradutorLex.l"
 { yyerror("Caracter nao reconhecido %c\n", *yytext);}
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
-#line 31 "tradutorLex.l"
+#line 29 "tradutorLex.l"
 YY_FATAL_ERROR( "flex scanner jammed" );
 	YY_BREAK
-#line 867 "tradutorBison.lex.c"
+#line 865 "tradutorBison.lex.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -1881,6 +1879,6 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 31 "tradutorLex.l"
+#line 29 "tradutorLex.l"
 
 

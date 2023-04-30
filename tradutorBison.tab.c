@@ -465,7 +465,7 @@ union yyalloc
 /* YYNNTS -- Number of nonterminals.  */
 #define YYNNTS  15
 /* YYNRULES -- Number of rules.  */
-#define YYNRULES  25
+#define YYNRULES  24
 /* YYNSTATES -- Number of states.  */
 #define YYNSTATES  53
 
@@ -517,9 +517,9 @@ static const yytype_int8 yytranslate[] =
 /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_int8 yyrline[] =
 {
-       0,    34,    34,    35,    39,    45,    48,    49,    52,    53,
-      56,    57,    60,    63,    64,    67,    70,    73,    74,    75,
-      78,    79,    80,    83,    86,    87
+       0,    34,    34,    35,    39,    45,    48,    49,    52,    55,
+      56,    59,    62,    63,    66,    69,    72,    73,    74,    77,
+      78,    79,    82,    85,    86
 };
 #endif
 
@@ -577,11 +577,11 @@ static const yytype_int8 yypact[] =
 static const yytype_int8 yydefact[] =
 {
        2,     0,     0,     2,     0,     1,     3,     6,     0,     0,
-       0,     8,     6,     5,    10,     0,     7,     0,     0,     0,
-      10,     9,    13,     4,    11,     0,     0,     0,     0,    12,
-      16,     0,    13,    17,    14,    18,     0,     0,    19,     0,
-       0,    22,     0,    21,    20,    24,     0,     0,     0,    15,
-      24,    23,    25
+       0,     0,     6,     5,     9,     0,     7,     0,     0,     0,
+       9,     8,    12,     4,    10,     0,     0,     0,     0,    11,
+      15,     0,    12,    16,    13,    17,     0,     0,    18,     0,
+       0,    21,     0,    20,    19,    23,     0,     0,     0,    14,
+      23,    22,    24
 };
 
 /* YYPGOTO[NTERM-NUM].  */
@@ -634,17 +634,17 @@ static const yytype_int8 yystos[] =
 /* YYR1[RULE-NUM] -- Symbol kind of the left-hand side of rule RULE-NUM.  */
 static const yytype_int8 yyr1[] =
 {
-       0,    15,    16,    16,    17,    18,    19,    19,    20,    20,
-      21,    21,    22,    23,    23,    24,    25,    26,    26,    26,
-      27,    27,    27,    28,    29,    29
+       0,    15,    16,    16,    17,    18,    19,    19,    20,    21,
+      21,    22,    23,    23,    24,    25,    26,    26,    26,    27,
+      27,    27,    28,    29,    29
 };
 
 /* YYR2[RULE-NUM] -- Number of symbols on the right-hand side of rule RULE-NUM.  */
 static const yytype_int8 yyr2[] =
 {
-       0,     2,     0,     2,     7,     3,     0,     3,     0,     3,
-       0,     3,     3,     0,     4,     7,     1,     0,     1,     1,
-       3,     3,     2,     3,     0,     3
+       0,     2,     0,     2,     7,     3,     0,     3,     3,     0,
+       3,     3,     0,     4,     7,     1,     0,     1,     1,     3,
+       3,     2,     3,     0,     3
 };
 
 
@@ -1147,116 +1147,110 @@ yyreduce:
 #line 1148 "tradutorBison.tab.c"
     break;
 
-  case 8: /* lObjetivos: %empty  */
+  case 8: /* lObjetivos: '{' nObjetivo '}'  */
 #line 52 "tradutorBison.y"
-            { (yyval.o) = NULL;}
+                              {(yyval.o) = (yyvsp[-1].o);}
 #line 1154 "tradutorBison.tab.c"
     break;
 
-  case 9: /* lObjetivos: '{' nObjetivo '}'  */
-#line 53 "tradutorBison.y"
-                        {(yyval.o) = (yyvsp[-1].o);}
+  case 9: /* nObjetivo: %empty  */
+#line 55 "tradutorBison.y"
+           { (yyval.o) = NULL;}
 #line 1160 "tradutorBison.tab.c"
     break;
 
-  case 10: /* nObjetivo: %empty  */
+  case 10: /* nObjetivo: NAME ';' nObjetivo  */
 #line 56 "tradutorBison.y"
-           { (yyval.o) = NULL;}
+                         {(yyval.o) = insertObjetivo(newObjetivo((yyvsp[-2].s)), (yyvsp[0].o));}
 #line 1166 "tradutorBison.tab.c"
     break;
 
-  case 11: /* nObjetivo: NAME ';' nObjetivo  */
-#line 57 "tradutorBison.y"
-                         {(yyval.o) = insertObjetivo(newObjetivo((yyvsp[-2].s)), (yyvsp[0].o));}
+  case 11: /* lPlanos: '{' nomePlano '}'  */
+#line 59 "tradutorBison.y"
+                           {(yyval.p) = (yyvsp[-1].p);}
 #line 1172 "tradutorBison.tab.c"
     break;
 
-  case 12: /* lPlanos: '{' nomePlano '}'  */
-#line 60 "tradutorBison.y"
-                           {(yyval.p) = (yyvsp[-1].p);}
+  case 12: /* nomePlano: %empty  */
+#line 62 "tradutorBison.y"
+           { (yyval.p) = NULL;}
 #line 1178 "tradutorBison.tab.c"
     break;
 
-  case 13: /* nomePlano: %empty  */
+  case 13: /* nomePlano: NAME tuplaPlano ';' nomePlano  */
 #line 63 "tradutorBison.y"
-           { (yyval.p) = NULL;}
+                                    {(yyval.p) = insertPlano(newPlano((yyvsp[-3].s), (yyvsp[-2].cnt)), (yyvsp[0].p));}
 #line 1184 "tradutorBison.tab.c"
     break;
 
-  case 14: /* nomePlano: NAME tuplaPlano ';' nomePlano  */
-#line 64 "tradutorBison.y"
-                                    {(yyval.p) = insertPlano(newPlano((yyvsp[-3].s), (yyvsp[-2].cnt)), (yyvsp[0].p));}
+  case 14: /* tuplaPlano: '(' eventoGatilho ';' contexto ';' corpo ')'  */
+#line 66 "tradutorBison.y"
+                                                         {(yyval.cnt) = newContent((yyvsp[-5].s), (yyvsp[-3].s), (yyvsp[-1].crp));}
 #line 1190 "tradutorBison.tab.c"
     break;
 
-  case 15: /* tuplaPlano: '(' eventoGatilho ';' contexto ';' corpo ')'  */
-#line 67 "tradutorBison.y"
-                                                         {(yyval.cnt) = newContent((yyvsp[-5].s), (yyvsp[-3].s), (yyvsp[-1].crp));}
+  case 15: /* eventoGatilho: NAME  */
+#line 69 "tradutorBison.y"
+                    {(yyval.s) = (yyvsp[0].s);}
 #line 1196 "tradutorBison.tab.c"
     break;
 
-  case 16: /* eventoGatilho: NAME  */
-#line 70 "tradutorBison.y"
-                    {(yyval.s) = (yyvsp[0].s);}
+  case 16: /* contexto: %empty  */
+#line 72 "tradutorBison.y"
+          {(yyval.s) = NULL;}
 #line 1202 "tradutorBison.tab.c"
     break;
 
-  case 17: /* contexto: %empty  */
+  case 17: /* contexto: NAME  */
 #line 73 "tradutorBison.y"
-          {(yyval.s) = NULL;}
+          {(yyval.s) = (yyvsp[0].s);}
 #line 1208 "tradutorBison.tab.c"
     break;
 
-  case 18: /* contexto: NAME  */
+  case 18: /* contexto: expLogica  */
 #line 74 "tradutorBison.y"
-          {(yyval.s) = (yyvsp[0].s);}
+                {(yyval.s) = (yyvsp[0].s);}
 #line 1214 "tradutorBison.tab.c"
     break;
 
-  case 19: /* contexto: expLogica  */
-#line 75 "tradutorBison.y"
-                {(yyval.s) = (yyvsp[0].s);}
+  case 19: /* expLogica: NAME E NAME  */
+#line 77 "tradutorBison.y"
+                       { (yyval.s) = threecat((yyvsp[-2].s), " & ", (yyvsp[0].s));}
 #line 1220 "tradutorBison.tab.c"
     break;
 
-  case 20: /* expLogica: NAME E NAME  */
+  case 20: /* expLogica: NAME OU NAME  */
 #line 78 "tradutorBison.y"
-                       { (yyval.s) = threecat((yyvsp[-2].s), " & ", (yyvsp[0].s));}
+                   { (yyval.s) = threecat((yyvsp[-2].s), " | ", (yyvsp[0].s)); }
 #line 1226 "tradutorBison.tab.c"
     break;
 
-  case 21: /* expLogica: NAME OU NAME  */
+  case 21: /* expLogica: NAO NAME  */
 #line 79 "tradutorBison.y"
-                   { (yyval.s) = threecat((yyvsp[-2].s), " | ", (yyvsp[0].s)); }
+               { (yyval.s) = stringcat("not ", (yyvsp[0].s)); }
 #line 1232 "tradutorBison.tab.c"
     break;
 
-  case 22: /* expLogica: NAO NAME  */
-#line 80 "tradutorBison.y"
-               { (yyval.s) = stringcat("not ", (yyvsp[0].s)); }
+  case 22: /* corpo: '{' formulasCorpo '}'  */
+#line 82 "tradutorBison.y"
+                              {(yyval.crp) = (yyvsp[-1].crp);}
 #line 1238 "tradutorBison.tab.c"
     break;
 
-  case 23: /* corpo: '{' formulasCorpo '}'  */
-#line 83 "tradutorBison.y"
-                              {(yyval.crp) = (yyvsp[-1].crp);}
+  case 23: /* formulasCorpo: %empty  */
+#line 85 "tradutorBison.y"
+               { (yyval.crp) = NULL ;}
 #line 1244 "tradutorBison.tab.c"
     break;
 
-  case 24: /* formulasCorpo: %empty  */
+  case 24: /* formulasCorpo: NAME ';' formulasCorpo  */
 #line 86 "tradutorBison.y"
-               { (yyval.crp) = NULL ;}
+                             {(yyval.crp) = insertCorpo( newCorpo((yyvsp[-2].s)), (yyvsp[0].crp));}
 #line 1250 "tradutorBison.tab.c"
     break;
 
-  case 25: /* formulasCorpo: NAME ';' formulasCorpo  */
-#line 87 "tradutorBison.y"
-                             {(yyval.crp) = insertCorpo( newCorpo((yyvsp[-2].s)), (yyvsp[0].crp));}
-#line 1256 "tradutorBison.tab.c"
-    break;
 
-
-#line 1260 "tradutorBison.tab.c"
+#line 1254 "tradutorBison.tab.c"
 
       default: break;
     }
@@ -1449,4 +1443,4 @@ yyreturnlab:
   return yyresult;
 }
 
-#line 90 "tradutorBison.y"
+#line 89 "tradutorBison.y"

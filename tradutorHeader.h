@@ -1,8 +1,6 @@
 extern int yylineno;
 void yyerror(char *s, ...);
 int yyparse(void);
-int yylex(void);
-void yyrestart();
 
 
 struct crencas{
@@ -39,31 +37,16 @@ struct agent{
 };
 
 struct crencas *newCrenca(char *crenca);
-
 struct crencas *insertCrenca(struct crencas *crencalist, struct crencas *crenca);
-
 struct objetivos *newObjetivo(char *objetivo);
-
 struct objetivos *insertObjetivo(struct objetivos *objetivolist, struct objetivos *objetivo);
-
 struct content *newContent(char *eventoGatilho, char *contexto, struct corpo *corpo);
-
 struct corpo *newCorpo(char *corpo);
-
 struct corpo *insertCorpo(struct corpo *corpolist, struct corpo *corpo);
-
 struct planos *newPlano(char *name, struct content *content);
-
 struct planos *insertPlano(struct planos *planolist, struct planos *plano);
-
-struct agent* newAgent(char *nome, struct crencas *crencas, struct objetivos *objetivos, struct planos *planos);
-
-struct agent* insertAgent(struct agent *agentlist, struct agent *agent);
-
+struct agent *newAgent(char *nome, struct crencas *crencas, struct objetivos *objetivos, struct planos *planos);
+struct agent *insertAgent(struct agent *agentlist, struct agent *agent);
 void writeAgent(struct agent *agentlist);
-
 char * stringcat(char *a, char *b);
-
 char * threecat(char *a, char *b, char *c);
-
-void agentfree(struct agent *a);

@@ -4,6 +4,7 @@
 #include <string.h>
 #include "tradutorHeader.h"
 
+
 struct crencas *newCrenca(char *crenca){
     struct crencas *newC = (struct crencas*) malloc(sizeof(struct crencas));
     

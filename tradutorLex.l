@@ -1,6 +1,4 @@
-/* Exemplo de Multiplos Arquivo no Flex (contagem de palavras) */
 %option noyywrap nodefault yylineno
-/* desabilita o analisador léxico */
 %{
 #include "tradutorHeader.h"
 #include "tradutorBison.tab.h"
