@@ -385,11 +385,11 @@ struct yy_trans_info
 	};
 static const flex_int16_t yy_accept[47] =
     {   0,
-        0,    0,   18,   16,   12,   14,    4,    5,    1,   13,
-        8,   13,   13,   15,   13,   13,   13,    2,    3,   13,
-       13,    7,   13,   13,   13,    6,   13,   13,   13,   13,
-       13,   13,   13,   13,   13,   13,   13,   13,   13,   13,
-       11,    9,   13,   13,   10,    0
+        0,    0,   18,   16,   12,   13,    4,    5,    1,   15,
+        8,   15,   15,   14,   15,   15,   15,    2,    3,   15,
+       15,    7,   15,   15,   15,    6,   15,   15,   15,   15,
+       15,   15,   15,   15,   15,   15,   15,   15,   15,   15,
+       11,    9,   15,   15,   10,    0
     } ;
 
 static const YY_CHAR yy_ec[256] =
@@ -479,7 +479,7 @@ static const flex_int16_t yy_chk[91] =
 /* Table of booleans, true if rule could match eol. */
 static const flex_int32_t yy_rule_can_match_eol[18] =
     {   0,
-0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0,     };
+0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0,     };
 
 static yy_state_type yy_last_accepting_state;
 static char *yy_last_accepting_cpos;
@@ -836,9 +836,10 @@ YY_RULE_SETUP
 
 	YY_BREAK
 case 13:
+/* rule 13 can match eol */
 YY_RULE_SETUP
 #line 22 "tradutorLex.l"
-{ yylval.s = strdup(yytext); return NAME; }
+
 	YY_BREAK
 case 14:
 /* rule 14 can match eol */
@@ -847,19 +848,18 @@ YY_RULE_SETUP
 
 	YY_BREAK
 case 15:
-/* rule 15 can match eol */
 YY_RULE_SETUP
 #line 24 "tradutorLex.l"
-
+{ yylval.s = strdup(yytext); return NAME; }
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 27 "tradutorLex.l"
+#line 28 "tradutorLex.l"
 { yyerror("Caracter nao reconhecido %c\n", *yytext);}
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
-#line 29 "tradutorLex.l"
+#line 30 "tradutorLex.l"
 YY_FATAL_ERROR( "flex scanner jammed" );
 	YY_BREAK
 #line 865 "tradutorBison.lex.c"
@@ -1879,6 +1879,6 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 29 "tradutorLex.l"
+#line 30 "tradutorLex.l"
 
 

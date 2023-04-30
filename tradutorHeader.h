@@ -1,6 +1,8 @@
 extern int yylineno;
 void yyerror(char *s, ...);
 int yyparse(void);
+void yyrestart(FILE *f);
+int yylex(void);
 
 
 struct crencas{

@@ -19,9 +19,10 @@
 "objetivos:" { return OBJETIVOS; }
 "planos:" { return PLANOS; }
 [ \t]
-[a-zA-Z][a-zA-Z0-9]* { yylval.s = strdup(yytext); return NAME; }
 [\n]
 [\\\n]
+[a-zA-Z][a-zA-Z0-9]* { yylval.s = strdup(yytext); return NAME; }
+
 
 
 . { yyerror("Caracter nao reconhecido %c\n", *yytext);}

@@ -4,6 +4,7 @@
 #include <string.h>
 #include "tradutorHeader.h"
 
+struct agent *agentmaster;
 
 struct crencas *newCrenca(char *crenca){
     struct crencas *newC = (struct crencas*) malloc(sizeof(struct crencas));
@@ -126,6 +127,7 @@ struct planos *insertPlano(struct planos *planolist, struct planos *plano){
 
 struct agent* insertAgent(struct agent *agent, struct agent *agentlist){
     if(agentlist == NULL){
+        agentmaster = agent;
         return agent;
     }
     struct agent *aux = agentlist;
@@ -138,18 +140,15 @@ struct agent* insertAgent(struct agent *agent, struct agent *agentlist){
 
 struct agent* newAgent(char *nome, struct crencas *crencas, struct objetivos *objetivos, struct planos *planos){
     struct agent *newA = (struct agent*) malloc(sizeof(struct agent));
-    
     if(newA == NULL){
         printf("Erro: falha na alocação de memória. \n");
         exit(1);
     }
-
     newA->nome = nome;
     newA->crencas = crencas;
     newA->objetivos = objetivos;
     newA->planos = planos;
     newA->prox = NULL;
-
     return newA;
 }
 
@@ -185,7 +184,10 @@ char * threecat(char *a, char *b, char *c){
 }
 
 void writeAgent(struct agent *agentlist){
-    char *filename = threecat("tradutorAgents/src/agt/", agentlist->nome, ".asl");
+    if (agentlist == NULL){
+        return;
+    }
+    char *filename = agentlist->nome;
     FILE *fp = fopen(filename, "w");
     if(fp == NULL){
         printf("Erro: falha na abertura do arquivo. \n");
@@ -221,7 +223,8 @@ void writeAgent(struct agent *agentlist){
         aux3 = aux3->prox;
         fprintf(fp, "\n");
     }
-    fclose(fp);         
+    fclose(fp);
+    writeAgent(agentlist->prox);         
 }
 
 void yyerror(char *s, ...){
@@ -252,7 +255,7 @@ int main(int argc, char *argv[]){
         yyparse();
         fclose(f);
     }
-    
+    writeAgent(agentmaster);
     return 0;
 }
 

@@ -37,8 +37,7 @@ agentlist: /*vazio*/ { $$ = NULL;}
     ;
 
 agent: NAME CRENCAS lCrencas OBJETIVOS lObjetivos PLANOS lPlanos {
-    $$ = newAgent($1, $3, $5, $7);
-    writeAgent($$);
+    $$ = newAgent(threecat("tradutorAgents/src/agt/", $1, ".asl"), $3, $5, $7);
 }
     ;
 
