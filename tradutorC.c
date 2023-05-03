@@ -238,7 +238,7 @@ void yyerror(char *s, ...){
 int main(int argc, char *argv[]){
     int i;
 
-    if (argc < 2){  /* stdin é lida */
+    if (argc < 2){ 
         yyparse();
         return 0;
     }
@@ -253,9 +253,8 @@ int main(int argc, char *argv[]){
         yyrestart(f);
         yylineno = 1;
         yyparse();
-        fclose(f);
+        fclose(f);  
+        writeAgent(agentmaster);
     }
-    writeAgent(agentmaster);
     return 0;
 }
-
